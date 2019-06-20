@@ -67,7 +67,7 @@ class JenisKendaraanController extends Controller
      */
     public function edit(JenisKendaraan $jenisKendaraan)
     {
-        //
+        return view('jenis_kendaraan.edit', compact('jenisKendaraan'));
     }
 
     /**
@@ -79,7 +79,15 @@ class JenisKendaraanController extends Controller
      */
     public function update(Request $request, JenisKendaraan $jenisKendaraan)
     {
-        //
+        $this->validate($request, array(
+            'nama_jenis' => 'required|max:255',
+            'kapasitas' => 'required'
+        ));        
+        
+        $jenisKendaraan->nama_jenis = $request->nama_jenis;
+        $jenisKendaraan->kapasitas = $request->kapasitas;        
+        $jenisKendaraan->save();                
+        return redirect()->route('jenis_kendaraan.index')->with('success', 'Jenis Kendaraan berhasil diedit');
     }
 
     /**
@@ -89,7 +97,8 @@ class JenisKendaraanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(JenisKendaraan $jenisKendaraan)
-    {
-        //
+    {        
+        $jenisKendaraan->delete();
+        return redirect()->route('jenis_kendaraan.index')->with('success', 'kostan berhasil dihapus');
     }
 }
