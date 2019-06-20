@@ -25,7 +25,7 @@
                         <div class="form-group row">
                             <label for="alamat_gudang" class="col-md-2 col-form-label text-md-right">{{ __('Alamat Gudang') }}</label>
                             <div class="col-md-8">
-                                <input id="alamat_gudang" type="number" class="form-control{{ $errors->has('alamat_gudang') ? ' is-invalid' : '' }}" name="alamat_gudang" value="{{ old('alamat_gudang') }}" required autofocus>
+                                <input id="alamat_gudang" type="text" class="form-control{{ $errors->has('alamat_gudang') ? ' is-invalid' : '' }}" name="alamat_gudang" value="{{ old('alamat_gudang') }}" required autofocus>
                                 @if ($errors->has('alamat_gudang'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('alamat_gudang') }}</strong>

@@ -67,7 +67,7 @@ class GudangController extends Controller
      */
     public function edit(Gudang $gudang)
     {
-        //
+        return view('gudang.edit', compact('gudang'));
     }
 
     /**
@@ -79,7 +79,15 @@ class GudangController extends Controller
      */
     public function update(Request $request, Gudang $gudang)
     {
-        //
+        $this->validate($request, array(
+            'nama_gudang' => 'required|max:255',
+            'alamat_gudang' => 'required'
+        ));        
+        
+        $gudang->nama_gudang = $request->nama_gudang;
+        $gudang->alamat_gudang = $request->alamat_gudang;        
+        $gudang->save();                
+        return redirect()->route('gudang.index')->with('success', 'Gudang berhasil diedit');
     }
 
     /**
@@ -90,6 +98,7 @@ class GudangController extends Controller
      */
     public function destroy(Gudang $gudang)
     {
-        //
+        $gudang->delete();
+        return redirect()->route('gudang.index')->with('success', 'Gudang berhasil dihapus');
     }
 }
