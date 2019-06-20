@@ -25,6 +25,9 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('supir.index') }}">Supir</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('gudang.index') }}">Gudang</a>
 					</li>					
 				</ul>
 				<ul>					
