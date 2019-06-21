@@ -16,6 +16,7 @@ Route::resource('armada', 'ArmadaController');
 Route::resource('jenis_supir', 'JenisSupirController');
 Route::resource('supir', 'SupirController');
 Route::resource('gudang', 'GudangController');
+Route::resource('barang', 'BarangController');
 
 Route::get('/', function () {
     return view('template');

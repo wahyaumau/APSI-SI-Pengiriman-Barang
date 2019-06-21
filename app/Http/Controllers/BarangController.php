@@ -14,7 +14,8 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
+        $listBarang = Barang::paginate(20);        
+        return view('barang.index', compact('listBarang'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('barang.create');
     }
 
     /**
@@ -35,7 +36,16 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'kode_barang' => 'required',
+            'nama_barang' => 'required|max:255'
+        ));        
+
+        $barang = new Barang;
+        $barang->kode_barang = $request->kode_barang; 
+        $barang->nama_barang = $request->nama_barang;       
+        $barang->save();                
+        return redirect()->route('barang.index')->with('success', 'Data Barang berhasil dibuat');
     }
 
     /**
@@ -57,7 +67,7 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+        return view('barang.edit', compact('barang'));
     }
 
     /**
@@ -69,7 +79,15 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        //
+        $this->validate($request, array(
+            'kode_barang' => 'required',
+            'nama_barang' => 'required|max:255'
+        ));        
+        
+        $barang->kode_barang = $request->kode_barang;
+        $barang->nama_barang = $request->nama_barang;       
+        $barang->save();                
+        return redirect()->route('barang.index')->with('success', 'Barang berhasil diedit');
     }
 
     /**
@@ -80,6 +98,7 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        //
+        $barang->delete();
+        return redirect()->route('barang.index')->with('success', 'Barang berhasil dihapus');
     }
 }
