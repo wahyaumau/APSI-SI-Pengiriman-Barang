@@ -26,6 +26,7 @@
                                 @endif
                             </div>
                         </div>
+                       
                         <div class="form-group row">
                             <label for="kapasitas" class="col-md-2 col-form-label text-md-right">{{ __('Kapasitas Jenis Kendaraan') }}</label>
                             <div class="col-md-8">

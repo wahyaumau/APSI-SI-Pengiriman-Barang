@@ -70,6 +70,7 @@ class ArmadaController extends Controller
     public function edit(Armada $armada)
     {
         //
+        return view('armada.edit',compact('armada'));
     }
 
     /**
@@ -82,6 +83,14 @@ class ArmadaController extends Controller
     public function update(Request $request, Armada $armada)
     {
         //
+        $this->validate($request, array(
+             'plat_nomor' => 'required|max:255',
+            'kode_jenis_kendaraan' => 'required|numeric'
+        ));
+        $armada->plat_nomor = $request->plat_nomor;  
+        $armada->save();
+        
+        return redirect()->route('armada.index')->with('success','Armada berhasil di edit Boss!!');
     }
 
     /**
@@ -92,6 +101,7 @@ class ArmadaController extends Controller
      */
     public function destroy(Armada $armada)
     {
-        //
+        $armada->delete();
+        return redirect()->route('armada.index')->with('succes', 'armada berhasil dihapus');
     }
 }
