@@ -65,7 +65,7 @@ class JenisSupirController extends Controller
      */
     public function edit(JenisSupir $jenisSupir)
     {
-        //
+        return view('jenis_supir.edit', compact('jenisSupir'));
     }
 
     /**
@@ -77,7 +77,13 @@ class JenisSupirController extends Controller
      */
     public function update(Request $request, JenisSupir $jenisSupir)
     {
-        //
+        $this->validate($request, array(
+            'nama_jenis_supir' => 'required|max:255'
+        ));        
+        
+        $jenisSupir->nama_jenis_supir = $request->nama_jenis_supir; 
+        $jenisSupir->save();                
+        return redirect()->route('jenis_supir.index')->with('success', 'Jenis Supir berhasil diedit');
     }
 
     /**
@@ -88,6 +94,7 @@ class JenisSupirController extends Controller
      */
     public function destroy(JenisSupir $jenisSupir)
     {
-        //
+        $jenisSupir->delete();
+        return redirect()->route('jenis_supir.index')->with('success', 'kostan berhasil dihapus');
     }
 }

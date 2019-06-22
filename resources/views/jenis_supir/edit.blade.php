@@ -1,14 +1,7 @@
-@extends('layouts.app')
+@extends('template')
 
 @section('stylesheets')
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
-    <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
-    <script>
-        tinymce.init({
-            selector:'textarea',
-            plugins: 'link'
-        });
-    </script>
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">    
 @endsection
 
 @section('content')
@@ -16,79 +9,27 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create Post') }}</div>
+                <div class="card-header">{{ __('Edit Jenis Supir') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('posts.update', $post) }} " enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('jenis_supir.update', $jenisSupir) }} ">
                         @method('PATCH')
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ $post->title }}" required autofocus>
-
-                                @if ($errors->has('title'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Pilih Gambar') }}</label>
-                            <div class="col-md-6">
-                                <input id="image" type="file" class="{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" value="{{ $post->image }}" autofocus>
-                                @if ($errors->has('image'))
+                            <label for="nama_jenis_supir" class="col-md-2 col-form-label text-md-right">{{ __('Nama Jenis Supir') }}</label>
+                            <div class="col-md-8">
+                                <input id="nama_jenis_supir" type="text" class="form-control{{ $errors->has('nama_jenis_supir') ? ' is-invalid' : '' }}" name="nama_jenis_supir" value="{{ $jenisSupir->nama_jenis_supir }}" required autofocus>
+                                @if ($errors->has('nama_jenis_supir'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('image') }}</strong>
+                                    <strong>{{ $errors->first('nama_jenis_supir') }}</strong>
                                 </span>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="body" class="col-md-4 col-form-label text-md-right">{{ __('Post Body') }}</label>
-                            <div class="col-md-6">
-                                <textarea id="body" cols="10" rows="10" class="form-control" name="body">{!! $post->body !!}</textarea>
-                                @if ($errors->has('body'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('body') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="slug" class="col-md-4 col-form-label text-md-right">{{ __('Post Slug') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="slug" type="text" class="form-control{{ $errors->has('slug') ? ' is-invalid' : '' }}" name="slug" value="{{ $post->slug }}" required autofocus>
-
-                                @if ($errors->has('slug'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('slug') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="category_id" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
-                            <div class="col-md-6">
-                                <select class="form-control select2-multi" name="categories[]" multiple="multiple">
-                                    @foreach($listCategory as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
+                        </div>                                             
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Post It') }}
+                                {{ __('Submit') }}
                                 </button>
                             </div>
                         </div>
@@ -98,12 +39,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('javascripts')
-<script src="{{ asset('js/select2.min.js') }}"></script>
-    <script type="text/javascript">
-        $('.select2-multi').select2();        
-        $('.select2-multi').select2().val({!! json_encode($post->categories()->allRelatedIds()->toArray())!!}).trigger('change');
-    </script>
 @endsection
