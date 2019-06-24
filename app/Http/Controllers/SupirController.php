@@ -38,6 +38,12 @@ class SupirController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, array(
+            'nama_supir' => 'required|max:255',
+            'alamat_supir' => 'required|max:255',
+            'sim' => 'required|max:12',
+        ));
+
         $supir = new Supir;        
         $supir->nama_supir = $request->nama_supir;        
         $supir->alamat_supir = $request->alamat_supir;        
@@ -79,6 +85,12 @@ class SupirController extends Controller
      */
     public function update(Request $request, Supir $supir)
     {
+        $this->validate($request, array(
+            'nama_supir' => 'required|max:255',
+            'alamat_supir' => 'required|max:255',
+            'sim' => 'required|max:12',
+        ));
+
         $supir->nama_supir = $request->nama_supir;
         $supir->alamat_supir = $request->alamat_supir;
         $supir->sim = $request->sim;
