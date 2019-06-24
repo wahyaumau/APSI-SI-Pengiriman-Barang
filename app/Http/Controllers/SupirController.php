@@ -44,7 +44,7 @@ class SupirController extends Controller
         $supir->sim = $request->sim;        
         $supir->kode_jenis_supir = $request->kode_jenis_supir;        
         $supir->save();                
-        return redirect()->route('supir.index')->with('success', 'Jenis Supir berhasil dibuat');
+        return redirect()->route('supir.index')->with('success', 'Supir berhasil dibuat');
     }
 
     /**
@@ -66,7 +66,8 @@ class SupirController extends Controller
      */
     public function edit(Supir $supir)
     {
-        //
+        $listJenisSupir = JenisSupir::all();
+        return view('supir.edit', compact('listJenisSupir', 'supir'));
     }
 
     /**
@@ -78,7 +79,12 @@ class SupirController extends Controller
      */
     public function update(Request $request, Supir $supir)
     {
-        //
+        $supir->nama_supir = $request->nama_supir;
+        $supir->alamat_supir = $request->alamat_supir;
+        $supir->sim = $request->sim;
+        $supir->kode_jenis_supir = $request->kode_jenis_supir;
+        $supir->save();
+        return redirect()->route('supir.index')->with('success', 'Supir berhasil diedit');
     }
 
     /**
@@ -89,6 +95,6 @@ class SupirController extends Controller
      */
     public function destroy(Supir $supir)
     {
-        //
-    }
+        $supir->delete();
+        return redirect()->route('supir.index')->with('success', 'Supir berhasil dihapus');    }
 }

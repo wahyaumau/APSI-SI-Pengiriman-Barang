@@ -34,7 +34,7 @@
                     <th>Alamat Supir</th>
                     <th>SIM</th>                    
                     <th>Jenis Supir</th>                    
-                    <th>Created Time</th>
+                    <!-- <th>Created Time</th> -->
                     <th colspan="3">Action</th>
                 </tr>
             </thead>

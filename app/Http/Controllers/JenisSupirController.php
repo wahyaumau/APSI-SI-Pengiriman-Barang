@@ -95,6 +95,6 @@ class JenisSupirController extends Controller
     public function destroy(JenisSupir $jenisSupir)
     {
         $jenisSupir->delete();
-        return redirect()->route('jenis_supir.index')->with('success', 'kostan berhasil dihapus');
+        return redirect()->route('jenis_supir.index')->with('success', 'Jenis Supir berhasil dihapus');
     }
 }
