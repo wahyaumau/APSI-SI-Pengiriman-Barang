@@ -20,7 +20,7 @@ class Pelanggan extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nama', 'email', 'password', 'alamat', 'telepon',
+        'nama', 'email', 'password', 'alamat', 'telepon', 'kode_pelanggan',
     ];
 
     /**
