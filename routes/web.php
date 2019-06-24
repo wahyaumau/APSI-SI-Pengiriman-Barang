@@ -24,4 +24,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::prefix('owner')->group(function(){
+	Route::get('/login', 'Auth\OwnerLoginController@showLoginForm')->name('owner.login');
+	Route::post('/login', 'Auth\OwnerLoginController@login')->name('owner.login.submit');
+	Route::get('/logout', 'Auth\OwnerLoginController@logout')->name('owner.logout');	
+	Route::get('/', 'OwnerController@dashboard')->name('owner.dashboard');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
