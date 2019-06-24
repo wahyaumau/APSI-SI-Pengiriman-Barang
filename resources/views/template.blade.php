@@ -30,10 +30,10 @@
 			<span class="navbar-toggler-icon"></span>
 			</button>
 
-
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 				<ul class="navbar-nav mr-auto">
+					@auth('owner')
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('jenis_kendaraan.index') }}">Jenis Kendaraan<span class="sr-only"></span></a>
 					</li>
@@ -51,7 +51,20 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('barang.index') }}">Barang</a>
-					</li>					
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('pemesanan.barang.konfirmasi.pemesanan.form') }}">Konfirmasi Pemesanan Barang</a>
+					</li>
+					@endauth					
+
+					@auth('web')
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('pemesanan.barang') }}">Pesan Barang<span class="sr-only"></span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('pemesanan.barang.list.pemesanan') }}">Lihat Pesanan Saya<span class="sr-only"></span></a>
+					</li>
+					@endauth
 				</ul>
 				<ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

@@ -16,8 +16,7 @@ class CreateGudangTable extends Migration
         Schema::create('gudang', function (Blueprint $table) {
             $table->bigIncrements('kode_gudang');
             $table->string('nama_gudang');
-            $table->string('alamat_gudang');
-            $table->timestamps();
+            $table->string('alamat_gudang');            
         });
     }
 

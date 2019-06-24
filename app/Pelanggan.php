@@ -13,6 +13,7 @@ class Pelanggan extends Authenticatable
     protected $table = "pelanggan";
     public $timestamps = false;
     protected $primaryKey = 'kode_pelanggan';
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -40,4 +41,8 @@ class Pelanggan extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function penjualan(){
+        return $this->hasMany('App\Penjualan', 'kode_penjualan');
+    }
 }

@@ -18,6 +18,16 @@ Route::resource('supir', 'SupirController');
 Route::resource('gudang', 'GudangController');
 Route::resource('barang', 'BarangController');
 
+Route::prefix('pemesanan_barang')->group(function(){	
+	Route::get('/konfirmasi/pemesanan/{penjualan}', 'PemesananBarangController@konfirmasiPemesanan')->name('pemesanan.barang.konfirmasi.pemesanan');
+	Route::get('/list/pemesanan', 'PemesananBarangController@showKonfirmasiPemesananForm')->name('pemesanan.barang.konfirmasi.pemesanan.form');
+	Route::post('/store/barang/{penjualan}', 'PelangganController@storePemesananBarang')->name('pemesanan.barang.store.barang');
+	Route::get('/create/barang/{penjualan}', 'PelangganController@createPemesananBarang')->name('pemesanan.barang.create.barang');
+	Route::get('/form_pemesanan/{penjualan}', 'PelangganController@showPemesananForm')->name('pemesanan.barang.form.pemesanan');
+	Route::get('/list_pemesanan', 'PelangganController@showListPemesanan')->name('pemesanan.barang.list.pemesanan');
+	Route::get('/', 'PelangganController@createNewPemesanan')->name('pemesanan.barang');
+});
+
 Route::get('/', function () {
     return view('template');
 });
@@ -40,6 +50,10 @@ Route::prefix('supplier')->group(function(){
 	Route::get('/logout', 'Auth\SupplierLoginController@logout')->name('supplier.logout');	
 	Route::get('/logout', 'Auth\SupplierLoginController@logout')->name('supplier.logout');	
 	Route::get('/', 'SupplierController@dashboard')->name('supplier.dashboard');
+});
+
+Route::prefix('pelanggan')->group(function(){	
+	Route::get('/', 'PelangganController@dashboard')->name('pelanggan.dashboard');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
