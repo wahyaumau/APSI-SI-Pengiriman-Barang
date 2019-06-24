@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('supplier.register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -26,12 +26,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="kode_pelanggan" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+                            <label for="kode_supplier" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="kode_pelanggan" type="text" class="form-control @error('kode_pelanggan') is-invalid @enderror" name="kode_pelanggan" value="{{ old('kode_pelanggan') }}" required autocomplete="kode_pelanggan" autofocus>
+                                <input id="kode_supplier" type="text" class="form-control @error('kode_supplier') is-invalid @enderror" name="kode_supplier" value="{{ old('kode_supplier') }}" required autocomplete="kode_supplier" autofocus>
 
-                                @error('kode_pelanggan')
+                                @error('kode_supplier')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

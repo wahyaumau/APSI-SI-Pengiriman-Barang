@@ -49361,8 +49361,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\Luthfi M Agung\APSI Pengiriman Barang\APSI-SI-Pengiriman-Barang\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\Luthfi M Agung\APSI Pengiriman Barang\APSI-SI-Pengiriman-Barang\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! D:\4\apsi implemen\APSI-SI-Pengiriman-Barang\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\4\apsi implemen\APSI-SI-Pengiriman-Barang\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> c4aecda72b63cc53cef8df74676e37830a377cbd
 
 
 /***/ })

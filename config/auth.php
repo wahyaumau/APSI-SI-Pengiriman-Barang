@@ -46,6 +46,27 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'supplier' => [
+            'driver' => 'session',
+            'provider' => 'supplier',
+        ],
+
+        'supplier-api' => [
+            'driver' => 'token',
+            'provider' => 'supplier',
+            'hash' => false,
+        ],
+        'owner' => [
+            'driver' => 'session',
+            'provider' => 'owner',
+        ],
+
+        'owner-api' => [
+            'driver' => 'token',
+            'provider' => 'owner',
+            'hash' => false,
+        ],
+
     ],
 
     /*
@@ -68,7 +89,15 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Pelanggan::class,
+        ],
+        'owner' => [
+            'driver' => 'eloquent',
+            'model' => App\Owner::class,
+        ],
+        'supplier' => [
+            'driver' => 'eloquent',
+            'model' => App\Supplier::class,
         ],
 
         // 'users' => [
@@ -95,6 +124,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'supplier' => [
+            'provider' => 'supplier',
             'table' => 'password_resets',
             'expire' => 60,
         ],

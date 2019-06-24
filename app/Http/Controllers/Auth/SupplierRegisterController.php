@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use App\Pelanggan;
+use App\Supplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
-class RegisterController extends Controller
+class SupplierRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'owner';
 
     /**
      * Create a new controller instance.
@@ -38,7 +39,11 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth:owner');
+    }
+
+    public function showRegistrationForm(){                
+        return view('supplier.register_form');
     }
 
     /**
@@ -50,13 +55,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'kode_pelanggan' => ['required', 'string', 'min:4', 'max:10', 'unique:pelanggan,kode_pelanggan'],
+            'kode_supplier' => ['required', 'string', 'min:4', 'max:10', 'unique:supplier,kode_supplier'],
             'nama' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string'],
             'telepon' => ['required', 'string', 'min:8', 'max:12'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:pelanggan,email'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:supplier,kode_supplier'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ]);        
     }
 
     /**
@@ -67,13 +72,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Pelanggan::create([
-            'kode_pelanggan' => $data['kode_pelanggan'],
+        return Supplier::create([
+            'kode_supplier' => $data['kode_supplier'],
             'alamat' => $data['alamat'],
             'telepon' => $data['telepon'],
             'nama' => $data['nama'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function register(Request $request){
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+
+        return $this->registered($request, $user)?: redirect($this->redirectPath());
     }
 }
