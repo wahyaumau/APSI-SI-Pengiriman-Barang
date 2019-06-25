@@ -60,5 +60,11 @@ class PelangganController extends Controller
 		$listPemesanan = Penjualan::where('kode_pelanggan', $pelanggan->kode_pelanggan)->get();
 		return view('pemesanan_barang.list_pemesanan', compact('listPemesanan'));
 	}
+
+	public function cetakInvoice(Penjualan $penjualan){
+		return view('pemesanan_barang.invoice', compact('penjualan'));
+	}
+
+	
 }
 

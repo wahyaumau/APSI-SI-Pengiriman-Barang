@@ -18,6 +18,25 @@ Route::resource('supir', 'SupirController');
 Route::resource('gudang', 'GudangController');
 Route::resource('barang', 'BarangController');
 
+Route::get('pendataan_barang', 'PendataanBarangController@index')->name('pendataan.barang');
+Route::get('pendataan_barang/{pengambilan}', 'PendataanBarangController@submitPendataan')->name('pendataan.barang.submit');
+
+Route::prefix('laporan_penjualan')->group(function(){	
+	Route::get('/barang', 'LaporanPenjualanController@laporanPenjualanBarang')->name('laporan.penjualan.barang');
+	Route::get('/pemasukkan', 'LaporanPenjualanController@laporanPemasukkan')->name('laporan.pemasukan');
+});
+
+Route::prefix('pengambilan_barang')->group(function(){
+	Route::get('/konfirmasi/{pengambilan}', 'PengambilanBarangController@konfirmasiPengambilan')->name('pengambilan.barang.konfirmasi');
+	Route::get('list_konfirmasi_supplier', 'PengambilanBarangController@listKonfirmasiSupplier')->name('pengambilan.barang.list.konfirmasi');
+	Route::get('list', 'PengambilanBarangController@listPengambilanBarang')->name('pengambilan.barang.list');
+	Route::get('create', 'PengambilanBarangController@create')->name('pengambilan.barang.create');
+	Route::post('store', 'PengambilanBarangController@store')->name('pengambilan.barang.store');
+
+});
+
+Route::get('cetak/invoice/{penjualan}', 'PelangganController@cetakInvoice')->name('cetak.invoice');
+
 Route::prefix('pemesanan_barang')->group(function(){	
 	Route::get('/konfirmasi/pemesanan/{penjualan}', 'PemesananBarangController@konfirmasiPemesanan')->name('pemesanan.barang.konfirmasi.pemesanan');
 	Route::get('/list/pemesanan', 'PemesananBarangController@showKonfirmasiPemesananForm')->name('pemesanan.barang.konfirmasi.pemesanan.form');
@@ -37,7 +56,7 @@ Auth::routes();
 Route::prefix('owner')->group(function(){
 	Route::get('/login', 'Auth\OwnerLoginController@showLoginForm')->name('owner.login');
 	Route::post('/login', 'Auth\OwnerLoginController@login')->name('owner.login.submit');
-	Route::get('/logout', 'Auth\OwnerLoginController@logout')->name('owner.logout');	
+	// Route::get('/logout', 'Auth\OwnerLoginController@logout')->name('owner.logout');	
 	Route::get('/logout', 'Auth\OwnerLoginController@logout')->name('owner.logout');	
 	Route::get('/', 'OwnerController@dashboard')->name('owner.dashboard');
 });

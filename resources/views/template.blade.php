@@ -46,14 +46,26 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('supir.index') }}">Supir</a>
 					</li>
-					<li class="nav-item">
+					{{-- <li class="nav-item">
 						<a class="nav-link" href="{{ route('gudang.index') }}">Gudang</a>
-					</li>
+					</li> --}}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('barang.index') }}">Barang</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ route('pemesanan.barang.konfirmasi.pemesanan.form') }}">Konfirmasi Pemesanan Barang</a>
+						<a class="nav-link" href="{{ route('pemesanan.barang.konfirmasi.pemesanan.form') }}">List Pemesanan Barang</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('laporan.penjualan.barang') }}">Laporan Penjualan Barang</a>
+					</li>					
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('pengambilan.barang.list') }}">Pesan Barang ke Supplier</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('pendataan.barang') }}">Pendataan Barang</a>
+					</li>					
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('owner.logout') }}">Owner Logout<span class="sr-only"></span></a>
 					</li>
 					@endauth					
 
@@ -63,6 +75,21 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('pemesanan.barang.list.pemesanan') }}">Lihat Pesanan Saya<span class="sr-only"></span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('owner.logout') }}">Pelanggan Logout<span class="sr-only"></span></a>
+					</li>
+					@endauth
+
+					
+
+					@auth('supplier')
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('pengambilan.barang.list.konfirmasi') }}">Konfirmasi Pengambilan Barang<span class="sr-only"></span></a>
+
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('supplier.logout') }}">Supplier Logout<span class="sr-only"></span></a>
 					</li>
 					@endauth
 				</ul>
@@ -108,4 +135,5 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> --}}
 	@yield('scripts')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 </html>

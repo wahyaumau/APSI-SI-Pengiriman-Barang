@@ -7,16 +7,16 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Tambah Barang') }}</div>
+                <div class="card-header">{{ __('Pengambilan Barang Ke Supplier') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('pemesanan.barang.store.barang', $penjualan) }}">
+                    <form method="POST" action="{{ route('pengambilan.barang.store') }}">
                         @csrf
                         <div class="form-group row">
                             <label for="kode_barang" class="col-md-2 col-form-label text-md-right">{{ __('Nama Barang') }}</label>
                             <div class="col-md-6">
                                 <select class="form-control select2-single" name="kode_barang">
                                     @foreach($listBarang as $barang)
-                                    <option value="{{$barang->kode_barang}}">{{$barang->nama_barang}} satuan {{ $barang->satuan }}</option>
+                                    <option value="{{$barang->kode_barang}}">{{$barang->nama_barang}} per {{ $barang->satuan }}</option>
                                     @endforeach
                                 </select>
                             </div>

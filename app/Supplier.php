@@ -13,6 +13,7 @@ class Supplier extends Authenticatable
     protected $table = "supplier";
     public $timestamps = false;
     protected $primaryKey = 'kode_supplier';
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -40,4 +41,8 @@ class Supplier extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function barang(){
+        return $this->hasMany('App\Barang', 'kode_barang');            
+    }
 }

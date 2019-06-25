@@ -20,5 +20,14 @@ class SupplierSeeder extends Seeder
 	            'alamat' => "bandung",
 	            'telepon' => "087744412442",
 	        ]);
+
+        Supplier::create([
+                'kode_supplier' => "SUP 02",
+                'nama' => "danang",
+                'email' => "danang@gmail.com",
+                'password' => bcrypt('12345678'),
+                'alamat' => "jakarta",
+                'telepon' => "087724412442",
+            ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Barang;
+use App\Supplier;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -25,7 +26,8 @@ class BarangController extends Controller
      */
     public function create()
     {
-        return view('barang.create');
+        $listSupplier = Supplier::all();
+        return view('barang.create', compact('listSupplier'));
     }
 
     /**
@@ -43,7 +45,11 @@ class BarangController extends Controller
 
         $barang = new Barang;
         $barang->kode_barang = $request->kode_barang; 
-        $barang->nama_barang = $request->nama_barang;       
+        $barang->nama_barang = $request->nama_barang; 
+        $barang->satuan = $request->satuan;       
+        $barang->harga = $request->harga;       
+        $barang->stok = 0;       
+        $barang->kode_supplier = $request->kode_supplier;               
         $barang->save();                
         return redirect()->route('barang.index')->with('success', 'Data Barang berhasil dibuat');
     }
@@ -67,6 +73,7 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
+        $listSupplier = Supplier::all();
         return view('barang.edit', compact('barang'));
     }
 
@@ -84,8 +91,12 @@ class BarangController extends Controller
             'nama_barang' => 'required|max:255'
         ));        
         
-        $barang->kode_barang = $request->kode_barang;
-        $barang->nama_barang = $request->nama_barang;       
+        $barang->kode_barang = $request->kode_barang; 
+        $barang->nama_barang = $request->nama_barang; 
+        $barang->satuan = $request->satuan;       
+        $barang->harga = $request->harga;       
+        $barang->stok = 0;       
+        $barang->kode_supplier = $request->kode_supplier;               
         $barang->save();                
         return redirect()->route('barang.index')->with('success', 'Barang berhasil diedit');
     }

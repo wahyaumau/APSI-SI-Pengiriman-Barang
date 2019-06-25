@@ -32,7 +32,41 @@
                                 </span>
                                 @endif
                             </div>
+                        </div>        
+                        <div class="form-group row">
+                            <label for="satuan" class="col-md-2 col-form-label text-md-right">{{ __('Satuan Barang') }}</label>
+                            <div class="col-md-8">
+                                <input id="satuan" type="text" class="form-control{{ $errors->has('satuan') ? ' is-invalid' : '' }}" name="satuan" value="{{ old('satuan') }}" required autofocus>
+                                @if ($errors->has('satuan'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('satuan') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>                                        
+                        <div class="form-group row">
+                            <label for="harga" class="col-md-2 col-form-label text-md-right">{{ __('Harga Barang') }}</label>
+                            <div class="col-md-8">
+                                <input id="harga" type="number" class="form-control{{ $errors->has('harga') ? ' is-invalid' : '' }}" name="harga" value="{{ old('harga') }}" required autofocus>
+                                @if ($errors->has('harga'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('harga') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>  
+                        <div class="form-group row">
+                            <label for="kode_supplier" class="col-md-2 col-form-label text-md-right">{{ __('Supplier Penyedia') }}</label>
+                            <div class="col-md-6">
+                                <select class="form-control select2-single" name="kode_supplier">
+                                    @foreach($listSupplier as $supplier)
+                                    <option value="{{$supplier->kode_supplier}}">{{$supplier->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>                        
+
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

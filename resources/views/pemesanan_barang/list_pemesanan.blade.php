@@ -31,7 +31,17 @@
                     
                     <td>@if ($loop->iteration == 1) {{$pemesanan->kode_penjualan}} @endif</td>
                     <td>@if ($loop->iteration == 1) {{$pemesanan->tanggal_pembelian}} @endif</td>
-                    <td>@if ($loop->iteration == 1) {{ $pemesanan->status? 'Diterima':'Diproses' }} @endif</td>
+                    <td>@if ($loop->iteration == 1) 
+
+                        @if($pemesanan->status)
+                            <a href="{{ route('cetak.invoice', $pemesanan) }}" class="btn btn-success">Cetak Invoice</a>
+                        @else
+                        {{ 'Sedang Diproses' }}
+                        @endif
+
+
+                        @endif
+                    </td>
                     
                     
                     <td>{{$barang->nama_barang}}</td>                    
