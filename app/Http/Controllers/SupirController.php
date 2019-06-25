@@ -61,7 +61,9 @@ class SupirController extends Controller
      */
     public function show(Supir $supir)
     {
-        //
+        $listSupir = Supir::paginate(20);
+        $pdf = \PDF::loadView('supir.show', compact('listSupir'));
+        return $pdf->download('Daftar_supir.pdf');
     }
 
     /**

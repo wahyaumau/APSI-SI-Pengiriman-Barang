@@ -62,7 +62,10 @@ class PelangganController extends Controller
 	}
 
 	public function cetakInvoice(Penjualan $penjualan){
-		return view('pemesanan_barang.invoice', compact('penjualan'));
+		$listPemesanan = Penjualan::paginate(20);
+        $pdf = \PDF::loadView('pemesanan_barang.invoice', compact('penjualan'));
+        return $pdf->download('invoice_pemesanan.pdf');
+		// return view('pemesanan_barang.invoice', compact('penjualan'));
 	}
 
 	

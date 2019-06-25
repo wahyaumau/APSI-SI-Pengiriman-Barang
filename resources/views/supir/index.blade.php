@@ -58,7 +58,12 @@
                     </td>
                 </tr>
             @endforeach
-
+                <tr>
+                    <td>
+                    <a href="{{ route('supir.show', $supir)}}" class="btn btn-success">Cetak PDF</a>
+                    </td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr>
             <div class="text-center">
                 {!!$listSupir->links(); !!}
             </div>

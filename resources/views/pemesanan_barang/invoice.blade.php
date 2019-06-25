@@ -1,6 +1,4 @@
-@extends('template')
 
-@section('content')
 <div class="container-fluid m-0 p-4">
     <div class="row">
         <div class="col-md-8">
@@ -48,5 +46,3 @@
         </table>        
     </div>
 </div>
-
-@endsection
